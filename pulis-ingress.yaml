@@ -1,0 +1,56 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["172.30.15.211"],"port":80,"protocol":"HTTP","serviceName":"default:pulis-service","ingressName":"default:pulis-ingress","hostname":"pulis.k8it.cmpsys.com","path":"/","allNodes":true}]'
+  creationTimestamp: "2022-06-17T09:11:39Z"
+  generation: 10
+  managedFields:
+  - apiVersion: networking.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:rules: {}
+    manager: agent
+    operation: Update
+    time: "2022-06-17T09:11:39Z"
+  - apiVersion: networking.k8s.io/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: nginx-ingress-controller
+    operation: Update
+    time: "2022-06-17T09:11:51Z"
+  - apiVersion: extensions/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:field.cattle.io/publicEndpoints: {}
+    manager: rancher
+    operation: Update
+    time: "2022-06-17T09:11:51Z"
+  name: pulis-ingress
+  namespace: default
+  resourceVersion: "70925416"
+  uid: 550b7f85-4b4a-4617-81c1-1f733499038a
+spec:
+  rules:
+  - host: pulis.k8it.cmpsys.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: pulis-service
+            port:
+              number: 5000
+        path: /
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.30.15.211
+    - ip: 172.30.15.212
