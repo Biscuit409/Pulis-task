@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "1"
+  creationTimestamp: "2022-06-18T16:40:37Z"
+  generation: 1
+  labels:
+    task: pulis
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:deprecated.daemonset.template.generation: {}
+        f:labels:
+          .: {}
+          f:task: {}
+      f:spec:
+        f:revisionHistoryLimit: {}
+        f:selector: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:task: {}
+              f:workload.user.cattle.io/workloadselector: {}
+          f:spec:
+            f:affinity: {}
+            f:containers:
+              k:{"name":"container-0"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+        f:updateStrategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+    manager: agent
+    operation: Update
+    time: "2022-06-18T16:40:37Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:currentNumberScheduled: {}
+        f:desiredNumberScheduled: {}
+        f:numberAvailable: {}
+        f:numberReady: {}
+        f:observedGeneration: {}
+        f:updatedNumberScheduled: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2022-06-18T16:40:43Z"
+  name: pulis-task
+  namespace: default
+  resourceVersion: "71003203"
+  uid: 9e1ea244-84f0-4523-8c01-c65d9f354293
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.daemonset-default-pulis-task
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        task: pulis
+        workload.user.cattle.io/workloadselector: apps.daemonset-default-pulis-task
+    spec:
+      affinity: {}
+      containers:
+      - image: 192.168.22.21:5000/pulis-task
+        imagePullPolicy: Always
+        name: container-0
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+status:
+  currentNumberScheduled: 2
+  desiredNumberScheduled: 2
+  numberAvailable: 2
+  numberMisscheduled: 0
+  numberReady: 2
+  observedGeneration: 1
+  updatedNumberScheduled: 2
